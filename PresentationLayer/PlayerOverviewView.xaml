@@ -1,0 +1,26 @@
+﻿<Window x:Class="PresentationLayer.PlayerOverviewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="PlayerOverviewView" Height="226.4" Width="233.2">
+    <Grid>
+        <Label x:Name="lbl_PlayerId" Content="Spiller ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_FirstName" Content="Fornavn:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_LastName" Content="Efternavn" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Email" Content="E-mail" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_PhoneNr" Content="Tlf Nr.:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_Close" Content="Annuller" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="60" Click="btn_Close_Click"/>
+        <Button x:Name="btn_Delete" Content="Slet" HorizontalAlignment="Left" Margin="160,168,0,0" VerticalAlignment="Top" Width="60" Click="btn_Delete_Click"/>
+        <Button x:Name="btn_Save" Content="Gem" HorizontalAlignment="Left" Margin="84,168,0,0" VerticalAlignment="Top" Width="60" Click="btn_Save_Click"/>
+        <TextBox x:Name="txt_FirstName" HorizontalAlignment="Left" Height="23" Margin="76,45,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txt_LastName" HorizontalAlignment="Left" Height="23" Margin="76,76,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txt_Email" HorizontalAlignment="Left" Height="23" Margin="76,107,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txt_PhoneNr" HorizontalAlignment="Left" Height="23" Margin="76,138,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="lbl_CurrentPlayerId" Content="Label" HorizontalAlignment="Left" Margin="76,10,0,0" VerticalAlignment="Top"/>
+       
+
+    </Grid>
+</Window>
