@@ -37,9 +37,9 @@ namespace PresentationLayer
             lbl_CurrentReward.Content = chosenLeague.Reward;
             lbl_CurrentNumberOfTeamMembers.Content = "1 Person(er)";
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
-            lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
+            lbl_CurrentNumberOfPlayers.Content = chosenLeague.PlayersInLeague.Count;
             RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
-            TeamDataGrid.ItemsSource = chosenLeague.TeamsInLeague;
+            TeamDataGrid.ItemsSource = chosenLeague.PlayersInLeague;
 
         }
 
@@ -67,12 +67,12 @@ namespace PresentationLayer
             APTLV.Owner = this;
             APTLV.ShowDialog();
             TeamDataGrid.ItemsSource = null;
-            TeamDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
+            TeamDataGrid.ItemsSource = ChosenLeague.PlayersInLeague;
         }
 
         private void TeamDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TeamOverviewView TOV = new TeamOverviewView((Team)TeamDataGrid.CurrentItem);
+            TeamOverviewView TOV = new TeamOverviewView((Player)TeamDataGrid.CurrentItem);
             this.Hide();
             TOV.ShowDialog();
             this.Show();
@@ -97,7 +97,7 @@ namespace PresentationLayer
                 if (!ChosenLeague.RoundsInLeague.All(x => x.MatchesInRound.Count == 0)) return;
                 //sikrer at der ikke bliver opereret i en League hvor der allerede er genereret matches i runder
 
-                if (ChosenLeague.TeamsInLeague.Count % 2 == 1)
+                if (ChosenLeague.PlayersInLeague.Count % 2 == 1)
                     // ser om der er et ullige antal af hold
                 {
                     MessageBoxResult result = MessageBox.Show("Der er et ulige antal hold! \nVil du tilføje et bye hold?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -106,30 +106,25 @@ namespace PresentationLayer
                     if (result != MessageBoxResult.Yes) return;
                     //hvis man siger nej bliver status ændret men der bliver ikke genereret kampe
 
-                    Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye", PhoneNr = "Bye" };
                     //bye spilleren bliver oprettet
-                    ObservableCollection<Player> playersInTeam = new ObservableCollection<Player>();
-                    playersInTeam.Add(newPlayer);
+                    Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye", PhoneNr = "Bye" };
+                    
                     //bye spilleren bliver sat på en spiller liste
                     BusinessFacade.SavePlayer(newPlayer);
-                    //bye spiller bliver gemt til database
-                    Team newTeam = new Team {Bye = true, TeamName = "ByeHold", PlayersInTeam = playersInTeam};
-                    //et bye hold bliver oprettet med spiller listen
-                    BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
                     //bye holdet til ligaen bliver gemt på databasen
-                    ChosenLeague.TeamsInLeague.Add(newTeam);
+                    ChosenLeague.PlayersInLeague.Add(newPlayer);
                     // bye holdet bliver tilføjet til ligaen
 
-                    BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                    BusinessFacade.CreateMatches(ChosenLeague.PlayersInLeague, ChosenLeague.RoundsInLeague);
                     //genererer alle kampene
                 }
                 else //hvis der er et lige antal hold
                 {
-                    BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                    BusinessFacade.CreateMatches(ChosenLeague.PlayersInLeague, ChosenLeague.RoundsInLeague);
                     //genererer kampenene
                 }
                 MessageBox.Show("Alle kampe er oprettet!");
-                lbl_CurrentNumberOfPlayers.Content = ChosenLeague.TeamsInLeague.Count;
+                lbl_CurrentNumberOfPlayers.Content = ChosenLeague.PlayersInLeague.Count;
                 // sætter en label til at vise nummeret på antal hold i ligaen
             }
             else if (cb_Status.SelectedIndex == 2)

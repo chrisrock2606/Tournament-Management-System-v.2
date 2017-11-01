@@ -45,14 +45,10 @@ namespace PresentationLayer
         {
             foreach (Player Item in PlayerDataGrid.SelectedItems)
             {
-                Team newTeam = new Team();
-                newTeam.PlayersInTeam.Add(Item);
-                newTeam.TeamName = $"{newTeam.PlayersInTeam[0].FirstName} {newTeam.PlayersInTeam[0].LastName}";
-                newTeam.Bye = false;
-                if (!ChosenLeague.TeamsInLeague.Any(x => x.TeamName.Equals(newTeam.TeamName) && x.Bye.Equals(newTeam.Bye)))
+                if (!ChosenLeague.PlayersInLeague.Any(x => x.FirstName.Equals(Item.FirstName) && x.LastName.Equals(Item.LastName)))
                 {
-                    BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
-                    ChosenLeague.TeamsInLeague.Add(newTeam);
+                    BusinessFacade.SavePlayer(Item);
+                    ChosenLeague.PlayersInLeague.Add(Item);
                 }
                 else
                 {

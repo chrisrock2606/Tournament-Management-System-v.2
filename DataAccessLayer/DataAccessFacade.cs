@@ -48,12 +48,6 @@ namespace DataAccessLayer
             return SD.SavePlayer(newPlayer);
         }
 
-        public static void UpdateTeam(Team ChosenTeam)
-        {
-            UpdateData UD = new UpdateData();
-            UD.UpdateTeam(ChosenTeam);
-        }
-
         public static void UpdatePlayer(Player ChosenPlayer)
         {
             UpdateData UD = new UpdateData();
@@ -70,12 +64,6 @@ namespace DataAccessLayer
         {
             DeleteData DL = new DeleteData();
             DL.DeletePlayer(ChosenPlayer);
-        }
-
-        public static void SaveTeam(Team newTeam, int leagueId)
-        {
-            SaveData SD = new SaveData();
-            SD.SaveTeam(newTeam, leagueId);
         }
 
         public static void SaveMatch(Match newMatch, int roundId)

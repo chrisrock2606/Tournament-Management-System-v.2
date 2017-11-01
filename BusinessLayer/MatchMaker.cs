@@ -15,9 +15,9 @@ namespace BusinessLayer
         private static Random rng = new Random();
 
         //ShuffleTeams blander placeringen af holdende i listen TeamList ved at bytte på placeringen af 2 hold af gangen
-        public ObservableCollection<Team> ShuffleTeams(ObservableCollection<Team> TeamList)
+        public ObservableCollection<Player> ShuffleTeams(ObservableCollection<Player> PlayerList)
         {
-            int n = TeamList.Count;
+            int n = PlayerList.Count;
 
             while (n > 1)
             {
@@ -25,36 +25,36 @@ namespace BusinessLayer
                 int k = rng.Next(n);
 
                 // får value til at holde det hold der er på k pladsen i listen af hold (TeamList)
-                Team value = TeamList[k];
+                Player value = PlayerList[k];
                 // på den plads hvor holdNr k ligger sættes holdNr n ind på i stedet
-                TeamList[k] = TeamList[n];
+                PlayerList[k] = PlayerList[n];
                 //på den plads hvor holdNr n ligger sættes holdNr k in i stedet
-                TeamList[n] = value;
+                PlayerList[n] = value;
 
             }
-            return TeamList;
+            return PlayerList;
         }
 
-        public ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        public ObservableCollection<Round> CreateMatches(ObservableCollection<Player> PlayersInLeague, ObservableCollection<Round> RoundsInLeague)
         {
             ObservableCollection<Round> result = new ObservableCollection<Round>();
 
             //listen af hold blandes
-            TeamsInLeague = ShuffleTeams(TeamsInLeague);
+            PlayersInLeague = ShuffleTeams(PlayersInLeague);
 
             // antal af kampe der skal være i en runde er = antallet af hold delt med 2
-            int numberOfMatchesInARound = TeamsInLeague.Count / 2;
+            int numberOfMatchesInARound = PlayersInLeague.Count / 2;
 
-            List<Team> teams = new List<Team>();
+            List<Player> Players = new List<Player>();
 
             //tager listen af hold og springer halvdelen over og tilføjer den sidste halvdel til listen Teams
-            teams.AddRange(TeamsInLeague.Skip(numberOfMatchesInARound).Take(numberOfMatchesInARound));
+            Players.AddRange(PlayersInLeague.Skip(numberOfMatchesInARound).Take(numberOfMatchesInARound));
 
             //springer det første hold over og tilføjer holdende derfra og optil halvvejen -1, 
             //ligger dem ind i et array derefter vender arrayet rundt og tilføjer arrayet til listen Team
-            teams.AddRange(TeamsInLeague.Skip(1).Take(numberOfMatchesInARound - 1).ToArray().Reverse());
+            Players.AddRange(PlayersInLeague.Skip(1).Take(numberOfMatchesInARound - 1).ToArray().Reverse());
             
-            var numberOfTeams = teams.Count;
+            var numberOfTeams = Players.Count;
 
             // kører for hvert antal af runde objekter i listen af RoundsInLeague
             for (var roundNumber = 0; roundNumber < RoundsInLeague.Count; roundNumber++)
@@ -66,11 +66,11 @@ namespace BusinessLayer
                 //newMatch indeholder en liste af hold
                 //tager det hold som er på tallet TeamIdx i teams listen 
                 //og tilføjer det til listen TeamsInMatch
-                newMatch.TeamsInMatch.Add(teams[teamIdx]);
+                newMatch.PlayersInMatch.Add(Players[teamIdx]);
 
                 //tager derefter det hold som ligger først i listen TeamsInLeague
                 //som vi sprang over før og tilføjer det til listen TeamsInMatch
-                newMatch.TeamsInMatch.Add(TeamsInLeague[0]);
+                newMatch.PlayersInMatch.Add(PlayersInLeague[0]);
 
                 //Gemmer den Match som lige er blevet lavet til databasen
                 DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[roundNumber].RoundId);
@@ -92,10 +92,10 @@ namespace BusinessLayer
                     Match newMatch2 = new Match();
 
                     //tilføjer det første hold til en match
-                    newMatch2.TeamsInMatch.Add(teams[firstTeamIndex]);
+                    newMatch2.PlayersInMatch.Add(Players[firstTeamIndex]);
 
                     //endikere det andet hold der skal i en match
-                    newMatch2.TeamsInMatch.Add(teams[secondTeamIndex]);
+                    newMatch2.PlayersInMatch.Add(Players[secondTeamIndex]);
 
                     //gemmer match info på database
                     DataAccessFacade.SaveMatch(newMatch2, RoundsInLeague[roundNumber].RoundId);

@@ -41,16 +41,6 @@ namespace BusinessLayer
             return DataAccessFacade.SavePlayer(newPlayer);
         }
 
-        public static void UpdateTeam(Team ChosenTeam)
-        {
-            DataAccessFacade.UpdateTeam(ChosenTeam);
-        }
-
-        public static void SaveTeam(Team newTeam, int leagueId)
-        {
-            DataAccessFacade.SaveTeam(newTeam, leagueId);
-        }
-
 
         public static void UpdatePlayer(Player ChosenPlayer)
         {
@@ -67,16 +57,16 @@ namespace BusinessLayer
             DataAccessFacade.DeleteLeague(chosenLeague);
         }
 
-        public static void CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        public static void CreateMatches(ObservableCollection<Player> PlayersInLeague, ObservableCollection<Round> RoundsInLeague)
         {
             MatchMaker MM = new MatchMaker();
-            MM.CreateMatches(TeamsInLeague, RoundsInLeague);
+            MM.CreateMatches(PlayersInLeague, RoundsInLeague);
         }
 
-        public static ObservableCollection<Team> ShuffleTeam(ObservableCollection<Team> teamList)
+        public static ObservableCollection<Player> ShuffleTeam(ObservableCollection<Player> PlayerList)
         {
             MatchMaker MM = new MatchMaker();
-            return MM.ShuffleTeams(teamList);
+            return MM.ShuffleTeams(PlayerList);
         }
 
         public static Player GetPlayerById(int playerId)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,13 +10,22 @@ using System.Threading.Tasks;
 
 namespace DomainLayer
 {
-    public class Match : IID
+    public class Match : INotifyPropertyChanged, IID
     {
-        public int MatchId { get; set; }
-        public Team Team1 { get; set; }
-        public Team Team2 { get; set; }
-        public ObservableCollection<Team> TeamsInMatch { get; set; }
-        public string VsString { get; set; }
+        private int matchId;
+        public int MatchId
+        {
+            get { return matchId; }
+            set
+            {
+                if (matchId != value)
+                    {
+                        matchId = value;
+                        RaisePropertyChanged("MatchId");
+                    }
+            }
+        }
+        public ObservableCollection<Player> PlayersInMatch { get; set; }
 
         public int ID
         {
@@ -24,12 +34,14 @@ namespace DomainLayer
             set { MatchId = value; }
         }
 
-        public Match()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string property)
         {
-            TeamsInMatch = new ObservableCollection<Team>();
-            TeamsInMatch.Add(Team1);
-            TeamsInMatch.Add(Team2);
-            VsString = "VS";
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
         }
     }
 }

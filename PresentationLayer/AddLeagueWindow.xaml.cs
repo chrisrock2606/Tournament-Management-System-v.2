@@ -50,7 +50,6 @@ namespace PresentationLayer
             //removes unwanted words from ComboBoxItem. uses space to go to the start of the word needed
             newLeague.LeagueStatus =
                 newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal) + 1);
-            newLeague.Rounds = cb_Rounds.SelectedIndex + 1;
             IEnumerable<RadioButton> rb_collection = addLeagueWindow.Children.OfType<RadioButton>();
             newLeague.LeagueId = BusinessFacade.SaveLeague(newLeague);
             IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
