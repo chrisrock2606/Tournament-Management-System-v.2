@@ -1,33 +1,32 @@
-﻿<Window x:Class="PresentationLayer.MainWindow"
+﻿<Window x:Class="UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:views="clr-namespace:PresentationLayer.Views"
+        xmlns:viewsmodels="clr-namespace:PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="533.2">
-    <Window.Resources>
-        <!--<local:EksamensDataBase x:Key="eksamensDataBase"/>
-        <CollectionViewSource x:Key="lEAGUEViewSource" Source="{Binding LEAGUE, Source={StaticResource eksamensDataBase}}"/>-->
-    </Window.Resources>
+        Title="Silverrudder - Challenge of the Sea" Height="700" Width="1370">
+
+
     <Grid>
-        <Button x:Name="btn_AddLeague" Content="Opret Ny Liga" Margin="0,10,14.4,0" VerticalAlignment="Top" Click="btn_AddLeague_Click" HorizontalAlignment="Right" Width="85"/>
-        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" Margin="14,10,0,0" VerticalAlignment="Top" Click="btn_ViewPlayers_Click" HorizontalAlignment="Left" Width="85" />
-        <DataGrid x:Name="LeagueDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalContentAlignment="Stretch" Margin="14,34,14.4,9.8" AutoGenerateColumns="false">
-            <DataGrid.Resources>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="grid_Row_DoubleClick"/>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding LeagueId}" Width="50"/>
-                <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
-                <!-- Mode=OneWay is essential else the program either throws an error instantly or when clicking on the Runder Column -->
-                <DataGridTextColumn Header="Runder" Binding="{Binding RoundsInLeague.Count, Mode=OneWay}" Width="50"/>
-                <DataGridTextColumn Header="Spil Titel" Binding="{Binding GameName}"/>
-                <DataGridTextColumn Header="Liga Status" Binding="{Binding LeagueStatus}" Width="125"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height='1*' />
+        </Grid.RowDefinitions>
 
-            </DataGrid.Columns>
-        </DataGrid>
+        <TabControl Grid.Row='0' SelectedIndex="0" >
+            <TabItem Header='Tournaments' Height='25' Width='150'>
+                <views:TournamentView />
+            </TabItem>
 
+            <TabItem Header='Players' Height='25' Width='150'>
+                <views:PlayerView/>
+            </TabItem>
+
+            <TabItem Header='Play' Height='25' Width='150'>
+                <views:PlayView/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

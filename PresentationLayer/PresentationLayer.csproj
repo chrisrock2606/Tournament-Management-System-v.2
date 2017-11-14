@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,71 +58,100 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddPlayerToLeagueView.xaml.cs">
+    <Compile Include="OldUI\AddPlayerToLeagueView.xaml.cs">
       <DependentUpon>AddPlayerToLeagueView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeagueOverviewView.xaml.cs">
+    <Compile Include="OldUI\LeagueOverviewView.xaml.cs">
       <DependentUpon>LeagueOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayerOverviewView.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OldUI\PlayerOverviewView.xaml.cs">
       <DependentUpon>PlayerOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayerRegisterView.xaml.cs">
+    <Compile Include="OldUI\PlayerRegisterView.xaml.cs">
       <DependentUpon>PlayerRegisterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RoundOverviewView.xaml.cs">
+    <Compile Include="OldUI\RoundOverviewView.xaml.cs">
       <DependentUpon>RoundOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TeamOverviewView.xaml.cs">
+    <Compile Include="OldUI\TeamOverviewView.xaml.cs">
       <DependentUpon>TeamOverviewView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddLeagueWindow.xaml">
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\PlayerView.xaml.cs">
+      <DependentUpon>PlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayView.xaml.cs">
+      <DependentUpon>PlayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TournamentView.xaml.cs">
+      <DependentUpon>TournamentView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="OldUI\AddLeagueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddPlayerToLeagueView.xaml">
+    <Page Include="OldUI\AddPlayerToLeagueView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddPlayerWindow.xaml">
+    <Page Include="OldUI\AddPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeagueOverviewView.xaml">
+    <Page Include="OldUI\LeagueOverviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OldUI\MainWindowOld.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddLeagueWindow.xaml.cs">
+    <Compile Include="OldUI\AddLeagueWindow.xaml.cs">
       <DependentUpon>AddLeagueWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddPlayerWindow.xaml.cs">
+    <Compile Include="OldUI\AddPlayerWindow.xaml.cs">
       <DependentUpon>AddPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="OldUI\MainWindowOld.xaml.cs">
+      <DependentUpon>MainWindowOld.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PlayerOverviewView.xaml">
+    <Page Include="OldUI\PlayerOverviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PlayerRegisterView.xaml">
+    <Page Include="OldUI\PlayerRegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RoundOverviewView.xaml">
+    <Page Include="OldUI\RoundOverviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TeamOverviewView.xaml">
+    <Page Include="OldUI\TeamOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TournamentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
