@@ -12,36 +12,36 @@ using DomainLayer;
 namespace DomainLayer
 {
     
-    public class League : INotifyPropertyChanged, IID
+    public class Tournament : INotifyPropertyChanged, IID
     {
-        private int leagueId;
-        private string leagueName;
+        private int tournamentId;
+        private string tournamentName;
         private string gameName;
         private string reward;
-        private string leagueStatus;
+        private string tournamentStatus;
 
-        public int LeagueId
+        public int TournamentId
         {
-            get { return leagueId; }
+            get { return tournamentId; }
             set
             {
-                if (leagueId != value)
+                if (tournamentId != value)
                 {
-                    leagueId = value;
-                    RaisePropertyChanged("LeagueId");
+                    tournamentId = value;
+                    RaisePropertyChanged("TournamentId");
                 }
             }
         }
 
-        public string LeagueName
+        public string TournamentName
         {
-            get { return leagueName; }
+            get { return tournamentName; }
             set
             {
-                if (leagueName != value)
+                if (tournamentName != value)
                 {
-                    leagueName = value;
-                    RaisePropertyChanged("LeagueName");
+                    tournamentName = value;
+                    RaisePropertyChanged("TournamentName");
                 }
             }
         }
@@ -72,15 +72,15 @@ namespace DomainLayer
             }
         }
 
-        public string LeagueStatus
+        public string TournamentStatus
         {
-            get { return leagueStatus; }
+            get { return tournamentStatus; }
             set
             {
-                if (leagueStatus != value)
+                if (tournamentStatus != value)
                 {
-                    leagueStatus = value;
-                    RaisePropertyChanged("LeagueStatus");
+                    tournamentStatus = value;
+                    RaisePropertyChanged("TournamentStatus");
                 }
             }
         }
@@ -90,9 +90,9 @@ namespace DomainLayer
         public ObservableCollection<Round> RoundsInLeague { get; set; }
         public int ID
         {
-            get { return LeagueId; }
+            get { return TournamentId; }
 
-            set { LeagueId = value; }
+            set { TournamentId = value; }
         }
 
 

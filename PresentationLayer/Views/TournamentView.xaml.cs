@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PresentationLayer.ViewModels;
 
 namespace PresentationLayer.Views
 {
@@ -20,9 +21,17 @@ namespace PresentationLayer.Views
     /// </summary>
     public partial class TournamentView : UserControl
     {
+
+        private TournamentVM viewModel { get; set; }
         public TournamentView()
         {
             InitializeComponent();
+
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+                return;
+
+            viewModel = new TournamentVM();
+            DataContext = viewModel;
         }
     }
 }

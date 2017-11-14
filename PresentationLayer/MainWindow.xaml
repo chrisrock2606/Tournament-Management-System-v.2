@@ -1,13 +1,13 @@
-﻿<Window x:Class="UI.MainWindow"
+﻿<Window x:Class="PresentaionLayer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UI"
+        xmlns:local="clr-namespace:PresentaionLayer"
         xmlns:views="clr-namespace:PresentationLayer.Views"
         xmlns:viewsmodels="clr-namespace:PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="Silverrudder - Challenge of the Sea" Height="700" Width="1370">
+        Title="Tournament Manager" Height="700" Width="1370">
 
 
     <Grid>

@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DataGrid Margin="10,10,10,35"/>
-        <Button Content="Remove Player" HorizontalAlignment="Left" Margin="190,270,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Remove Player" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </UserControl>
