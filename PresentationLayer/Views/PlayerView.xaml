@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid Margin="10,10,10,35"/>
-        <Button Content="Remove Player" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+        <DataGrid Margin="10,10,10,60"/>
+        <Button Content="Tilføj Spiller" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+        <Button Content="Fjern Spiller" Margin="0,0,10,35" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </UserControl>

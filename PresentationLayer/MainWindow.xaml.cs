@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.ViewModels;
 
 namespace PresentationLayer
 {
@@ -19,5 +20,14 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainVM viewModel { get; set; }
+        public MainWindow()
+        {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+                return;
+
+            viewModel = new MainVM();
+            DataContext = viewModel;
+        }
     }
 }

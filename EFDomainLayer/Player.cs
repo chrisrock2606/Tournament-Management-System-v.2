@@ -13,6 +13,7 @@ namespace DomainLayer
         private int playerId;
         private string firstName;
         private string lastName;
+        private string userName;
         private string email;
         private string phoneNr;
         public int PlayerId
@@ -51,6 +52,20 @@ namespace DomainLayer
                 }
             }
         }
+
+        public string UserName
+        {
+            get { return userName; }
+            set
+            {
+                if (userName != value)
+                {
+                    userName = value;
+                    RaisePropertyChanged("UserName");
+                }
+            }
+        }
+
         public string Email
         {
             get { return email; }

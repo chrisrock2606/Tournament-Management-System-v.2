@@ -32,7 +32,6 @@ namespace DomainLayer
                 }
             }
         }
-
         public string TournamentName
         {
             get { return tournamentName; }
@@ -45,7 +44,6 @@ namespace DomainLayer
                 }
             }
         }
-
         public string GameName
         {
             get { return gameName; }
@@ -58,7 +56,6 @@ namespace DomainLayer
                 }
             }
         }
-
         public string Reward
         {
             get { return reward; }
@@ -71,7 +68,6 @@ namespace DomainLayer
                 }
             }
         }
-
         public string TournamentStatus
         {
             get { return tournamentStatus; }
@@ -86,8 +82,8 @@ namespace DomainLayer
         }
 
         public ObservableCollection<Player> PlayersInLeague { get; set; }
-
         public ObservableCollection<Round> RoundsInLeague { get; set; }
+
         public int ID
         {
             get { return TournamentId; }

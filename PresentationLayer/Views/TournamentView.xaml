@@ -6,13 +6,19 @@
              xmlns:local="clr-namespace:PresentationLayer.Views"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="500">
     <Grid Margin="0,0,0.2,0.2">
-        <DataGrid Margin="10,10,9.8,83.8" ItemsSource="{Binding TournamentList}"/>
-        <Button Content="Tilføj Turnering" HorizontalAlignment="Right" Margin="0,0,9.8,57.8" VerticalAlignment="Bottom" Width="100" Command="{Binding CommandCreateTournament}"/>
-        <Button Content="Slet Turnering" HorizontalAlignment="Right" Margin="0,0,9.8,27.8" VerticalAlignment="Bottom" Width="100"/>
+        <DataGrid Margin="10,10,9.8,83.8" ItemsSource="{Binding TournamentList}" SelectedIndex="{Binding SelectedTournamentItemIndex}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="35" Binding="{Binding TournamentId}"/>
+                <DataGridTextColumn Header="Turnerings Navn" MinWidth="100" Binding="{Binding TournamentName}"/>
+                <DataGridTextColumn Header="Spil Navn" MinWidth="75" Binding="{Binding GameName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+            <Button Content="Tilføj Turnering" HorizontalAlignment="Right" Margin="0,0,9.8,57.8" VerticalAlignment="Bottom" Width="100" Command="{Binding CommandCreateTournament}"/>
+        <Button Content="Slet Turnering" HorizontalAlignment="Right" Margin="0,0,9.8,27.8" VerticalAlignment="Bottom" Width="100" Command="{Binding CommandDeleteTournament}"/>
         <TextBox x:Name="txt_TournamentName" HorizontalAlignment="Left" Height="23" Margin="125,0,0,52.8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="{Binding TournamentName}"/>
         <Label x:Name="lbl_TournamentName" Content="Tournament Name:" HorizontalAlignment="Left" Margin="10,0,0,53.8" VerticalAlignment="Bottom"/>
         <Label x:Name="lbl_GameName" Content="Game Name:" HorizontalAlignment="Left" Margin="10,0,0,24.8" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="txt_GameName" HorizontalAlignment="Left" Height="23" Margin="125,0,0,24.8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="{Binding GameName}"/>
+        <TextBox x:Name="txt_GameName" HorizontalAlignment="Left"  Height="23" Margin="125,0,0,24.8" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Text="{Binding GameName}"/>
 
     </Grid>
 </UserControl>
