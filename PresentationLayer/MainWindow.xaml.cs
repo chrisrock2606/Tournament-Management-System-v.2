@@ -26,7 +26,7 @@ namespace PresentationLayer
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
                 return;
 
-            viewModel = new MainVM();
+            viewModel = MainVM.Instance;
             DataContext = viewModel;
         }
     }

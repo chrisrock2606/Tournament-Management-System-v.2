@@ -29,6 +29,6 @@
             </TabItem>
 
         </TabControl>
-        <Label Content="{Binding SelectedTournament.TournamentName}" HorizontalContentAlignment="Center" Margin="10,34,10.2,606.4"/>
+        <Label Content="{Binding TournamentName}" HorizontalContentAlignment="Center" Margin="10,34,10.2,606.4"/>
     </Grid>
 </Window>

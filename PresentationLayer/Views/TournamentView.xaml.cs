@@ -33,5 +33,10 @@ namespace PresentationLayer.Views
             viewModel = new TournamentVM();
             DataContext = viewModel;
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

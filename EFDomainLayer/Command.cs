@@ -22,6 +22,11 @@ namespace DomainLayer
             canExecute = onCanExecuteMethod;
         }
 
+        public Command(ICommandOnExecute onExecuteMethod)
+        {
+            execute = onExecuteMethod;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }

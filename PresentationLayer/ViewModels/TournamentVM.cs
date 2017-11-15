@@ -20,6 +20,7 @@ namespace PresentationLayer.ViewModels
 
         public ICommand CommandCreateTournament { get; set; }
         public ICommand CommandDeleteTournament { get; set; }
+        public ICommand CommandUpdateSelection { get; set; }
 
         private string tournamentName;
         public string TournamentName
@@ -58,6 +59,8 @@ namespace PresentationLayer.ViewModels
                 if (value != selectedTournamentItemIndex)
                 {
                     selectedTournamentItemIndex = value;
+                    MainVM.Instance.SelectedTournament = TournamentList[selectedTournamentItemIndex];
+                    MainVM.Instance.TournamentName = TournamentList[selectedTournamentItemIndex].TournamentName;
                     NotifyPropertyChanged();
                 }
             }
@@ -69,7 +72,12 @@ namespace PresentationLayer.ViewModels
         {
             CommandCreateTournament = new Command(ExecuteCommandCreateTournament, CanExecuteCommandCreateTournament);
             CommandDeleteTournament = new Command(ExecuteCommandDeleteTournament, CanExecuteCommandDeleteTournament);
+            CommandUpdateSelection = new Command(ExecuteCommandUpdateSelection);
             TournamentList = TournamentRepository.Instance.TournamentList;
+        }
+
+        private void ExecuteCommandUpdateSelection(object parameter)
+        {
         }
 
         private bool CanExecuteCommandDeleteTournament(object parameter)

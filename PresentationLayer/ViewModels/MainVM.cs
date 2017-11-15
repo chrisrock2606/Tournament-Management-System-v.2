@@ -8,13 +8,53 @@ using DomainLayer;
 
 namespace PresentationLayer.ViewModels
 {
-    class MainVM
+    class MainVM : ModelBase
     {
-        public ObservableCollection<Tournament> TournamentList { get; set; }
+        private static MainVM instance;
+        private Tournament selectedTournament;
 
+        public Tournament SelectedTournament
+        {
+            get { return selectedTournament; }
+            set
+            {
+                if (value != selectedTournament)
+                {
+                    selectedTournament = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string tournamentName;
+
+        public string TournamentName
+        {
+            get { return tournamentName; }
+            set
+            {
+                if (value != tournamentName)
+                {
+                    tournamentName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public static MainVM Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MainVM();
+                }
+                return instance;
+            }
+        }
         public MainVM()
         {
-            TournamentList = TournamentRepository.Instance.TournamentList;
+            TournamentName = "test";
         }
     }
 }
