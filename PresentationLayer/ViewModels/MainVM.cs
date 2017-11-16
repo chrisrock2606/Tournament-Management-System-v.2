@@ -54,7 +54,6 @@ namespace PresentationLayer.ViewModels
         }
         public MainVM()
         {
-            TournamentName = "test";
         }
     }
 }

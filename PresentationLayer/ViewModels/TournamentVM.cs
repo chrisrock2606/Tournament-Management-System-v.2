@@ -121,19 +121,5 @@ namespace PresentationLayer.ViewModels
             newTournament.GameName = GameName;
             TournamentRepository.Instance.AddTournamentToList(newTournament);
         }
-
-        internal Tournament GetSelectedTournament()
-        {
-            if (selectedTournamentItemIndex != -1)
-            {
-                return TournamentList[selectedTournamentItemIndex];
-            }
-            else
-            {
-                throw new DataException("No Item Selected");
-            }
-        }
     }
-
-    
 }

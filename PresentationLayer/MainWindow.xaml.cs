@@ -23,6 +23,7 @@ namespace PresentationLayer
         private MainVM viewModel { get; set; }
         public MainWindow()
         {
+            InitializeComponent();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
                 return;
 
