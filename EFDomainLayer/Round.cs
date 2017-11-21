@@ -39,7 +39,7 @@ namespace DomainLayer
             }
         }
         public ObservableCollection<Player> PlayersInRound { get; set; }
-        public ObservableCollection<Match> MatchesInRound { get; set; }
+        public ObservableCollection<Match> Matches { get; set; }
         public int ID
         {
             get { return RoundId; }
@@ -54,6 +54,12 @@ namespace DomainLayer
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
+        }
+
+        public Round()
+        {
+            PlayersInRound = new ObservableCollection<Player>();
+            Matches = new ObservableCollection<Match>();
         }
     }
 }

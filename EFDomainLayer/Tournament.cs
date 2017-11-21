@@ -101,5 +101,11 @@ namespace DomainLayer
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
+
+        public Tournament()
+        {
+            PlayersInLeague = new ObservableCollection<Player>();
+            Rounds = new ObservableCollection<Round>();
+        }
     }
 }

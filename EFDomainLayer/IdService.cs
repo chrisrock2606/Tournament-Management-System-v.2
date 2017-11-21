@@ -25,7 +25,7 @@ namespace EFDomainLayer
 
         public int GetNewId()
         {
-            id += id++;
+            id += 1;
             return id;
         }
     }

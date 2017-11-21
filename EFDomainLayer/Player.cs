@@ -109,5 +109,10 @@ namespace DomainLayer
             }
         }
 
+        public Player()
+        {
+            MatchIdValues = new List<int>();
+        }
+
     }
 }

@@ -8,14 +8,13 @@ using DomainLayer;
 
 namespace EFDomainLayer
 {
-    class MatchMaker
+    public class MatchMaker
     {
         public int MaxPlayersInMatch { get; }
         public int MinPlayersInMatch { get; }
         public ObservableCollection<Player> Players { get; }
         public Round Round { get; }
 
-        ObservableCollection<Match> matches = new ObservableCollection<Match>();
         ObservableCollection<Player> playersCompetedInPreviousRound = new ObservableCollection<Player>();
         ObservableCollection<Player> playersImpossibleToGroupInRound = new ObservableCollection<Player>();
 
@@ -33,9 +32,11 @@ namespace EFDomainLayer
 
         public void AddPlayersToMatches()
         {
+            CreateNewMatches();
+
             foreach (var player in Players)
             {
-                foreach (var match in matches.Where(x => x.PlayersInMatch.Count < MaxPlayersInMatch))
+                foreach (var match in Round.Matches.Where(x => x.PlayersInMatch.Count < MaxPlayersInMatch))
                 {
                     if (match.PlayersInMatch.Count == 0 || CheckIfCompetedBefore(player, match) == false)
                     {
@@ -64,17 +65,17 @@ namespace EFDomainLayer
             {
                 Match match = new Match();
                 match.ID = IdService.Instance.GetNewId();
-                matches.Add(match);
+                Round.Matches.Add(match);
             }
         }
 
         private void CheckIfMatchesAreTooSmall()
         {
-            foreach (var match in matches)
+            foreach (var match in Round.Matches)
             {
                 if (match.PlayersInMatch.Count < MinPlayersInMatch && MaxPlayersInMatch != MinPlayersInMatch)
                 {
-                    foreach (var fullMatch in matches.Where(x => x.PlayersInMatch.Count == MaxPlayersInMatch))
+                    foreach (var fullMatch in Round.Matches.Where(x => x.PlayersInMatch.Count == MaxPlayersInMatch))
                     {
                         var participant = fullMatch.PlayersInMatch[0];
                         fullMatch.PlayersInMatch.Remove(participant);
@@ -90,7 +91,7 @@ namespace EFDomainLayer
 
         private void PlayersImpossibleToGroupInRound()
         {
-            foreach (var match in matches)
+            foreach (var match in Round.Matches)
             {
                 if (match.PlayersInMatch.Count < MinPlayersInMatch)
                     playersImpossibleToGroupInRound = match.PlayersInMatch;
@@ -102,7 +103,7 @@ namespace EFDomainLayer
             foreach (var participant in participantsInConflict)
             {
                 int matchSize = 0;
-                foreach (var match in matches)
+                foreach (var match in Round.Matches)
                 {
                     if (match.PlayersInMatch.Count == matchSize)
                     {

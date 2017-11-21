@@ -43,5 +43,10 @@ namespace DomainLayer
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
+
+        public Match()
+        {
+            PlayersInMatch = new ObservableCollection<Player>();
+        }
     }
 }
