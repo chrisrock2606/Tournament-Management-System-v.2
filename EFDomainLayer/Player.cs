@@ -97,6 +97,7 @@ namespace DomainLayer
 
             set { PlayerId = value; }
         }
+        public List<int> MatchIdValues { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

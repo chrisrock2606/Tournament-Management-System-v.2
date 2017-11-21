@@ -82,7 +82,7 @@ namespace DomainLayer
         }
 
         public ObservableCollection<Player> PlayersInLeague { get; set; }
-        public ObservableCollection<Round> RoundsInLeague { get; set; }
+        public ObservableCollection<Round> Rounds { get; set; }
 
         public int ID
         {
