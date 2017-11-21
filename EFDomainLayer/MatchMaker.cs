@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using DomainLayer;
 
-namespace EFDomainLayer
+namespace DomainLayer
 {
     public class MatchMaker
     {

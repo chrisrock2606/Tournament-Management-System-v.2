@@ -81,7 +81,7 @@ namespace DomainLayer
             }
         }
 
-        public ObservableCollection<Player> PlayersInLeague { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
         public ObservableCollection<Round> Rounds { get; set; }
 
         public int ID
@@ -104,7 +104,7 @@ namespace DomainLayer
 
         public Tournament()
         {
-            PlayersInLeague = new ObservableCollection<Player>();
+            Players = new ObservableCollection<Player>();
             Rounds = new ObservableCollection<Round>();
         }
     }

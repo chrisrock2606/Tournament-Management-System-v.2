@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EFDomainLayer;
+using DomainLayer;
 
-namespace EFDomainLayer
+namespace DomainLayer
 {
-    class IdService
+    public class IdService
     {
-        private int id;
+        private int Id;
 
         private static IdService instance;
         public static IdService Instance
@@ -23,10 +25,34 @@ namespace EFDomainLayer
             }
         }
 
+        private IdService()
+        { SetId(); }
+
         public int GetNewId()
         {
-            id += 1;
-            return id;
+            Id += 1;
+            return Id;
+        }
+
+        private void SetId()
+        {
+            foreach (var tournament in TournamentRepository.Instance.TournamentList)
+            {
+                if (tournament.ID > Id)
+                    Id = tournament.ID;
+
+                foreach (var round in tournament.Rounds)
+                {
+                    if (round.ID > Id)
+                        Id = round.ID;
+                    
+                    foreach (var match in round.Matches)
+                    {
+                        if (match.ID > Id)
+                            Id = match.ID;
+                    }
+                }
+            }
         }
     }
 }
