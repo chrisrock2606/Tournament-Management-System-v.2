@@ -11,12 +11,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height='1*' />
+            <RowDefinition Height='auto' />
+            <RowDefinition Height='*' />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row='0' SelectedIndex="0" >
+        <TabControl Grid.Row="1" SelectedIndex="0" >
             <TabItem Header='Tournaments' Height='25' Width='150'>
-                <views:TournamentView Margin="0,56,-0.4,-0.4" />
+                <views:TournamentView/>
             </TabItem>
 
             <TabItem Header='Players' Height='25' Width='150'>
@@ -28,6 +29,6 @@
             </TabItem>
 
         </TabControl>
-        <Label Content="{Binding TournamentName}" FontSize="20" HorizontalContentAlignment="Center" Margin="10,34,10.2,0" Height="60" VerticalAlignment="Top"/>
+        <Label Grid.Row="0" Content="{Binding TournamentName}" FontSize="30" HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
     </Grid>
 </Window>
