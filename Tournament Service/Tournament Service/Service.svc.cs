@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using DataAccess;
+using Domain;
 
 namespace Tournament_Service
 {
@@ -12,22 +14,23 @@ namespace Tournament_Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service : IService
     {
-        public string GetData(int value)
+        public void SaveTournament(Tournament newTournament)
         {
-            return string.Format("You entered: {0}", value);
+            SaveData SD = new SaveData();
+            SD.SaveTournament(newTournament);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public bool TryToSavePlayerToTournament(Player newPlayer, int tournamentId)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            SaveData SD = new SaveData();
+            return SD.TryToSavePlayerToTournament(newPlayer, tournamentId);
         }
+        public List<Tournament> GetTournaments()
+        {
+            GetData GD = new GetData();
+            return GD.GetTournaments();
+        }
+
+        
     }
 }

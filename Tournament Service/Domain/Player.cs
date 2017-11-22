@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
+    [DataContract]
     public class Player : INotifyPropertyChanged, IID
     {
         private int playerId;
@@ -10,6 +12,7 @@ namespace Domain
         private string userName;
         private string email;
         private string phoneNr;
+        [DataMember]
         public int PlayerId
         {
             get { return playerId; }
@@ -22,6 +25,7 @@ namespace Domain
                 }
             }
         }
+        [DataMember]
         public string FirstName
         {
             get { return firstName; }
@@ -34,6 +38,7 @@ namespace Domain
                 }
             }
         }
+        [DataMember]
         public string LastName
         {
             get { return lastName; }
@@ -47,6 +52,7 @@ namespace Domain
             }
         }
 
+        [DataMember]
         public string UserName
         {
             get { return userName; }
@@ -60,6 +66,7 @@ namespace Domain
             }
         }
 
+        [DataMember]
         public string Email
         {
             get { return email; }
@@ -73,6 +80,7 @@ namespace Domain
             }
         }
         //PhoneNr er en string da det er data der ikke skal laves udregninger på
+        [DataMember]
         public string PhoneNr
         {
             get { return phoneNr; }
@@ -85,6 +93,7 @@ namespace Domain
                 }
             }
         }
+        [DataMember]
         public int ID
         {
             get { return PlayerId; }
