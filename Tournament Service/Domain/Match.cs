@@ -1,11 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
+    [DataContract]
     public class Match : INotifyPropertyChanged, IID
     {
         private int matchId;
+        [DataMember]
         public int MatchId
         {
             get { return matchId; }
@@ -18,8 +21,10 @@ namespace Domain
                     }
             }
         }
+        [DataMember]
         public ObservableCollection<Player> PlayersInMatch { get; set; }
 
+        [DataMember]
         public int ID
         {
             get { return MatchId; }

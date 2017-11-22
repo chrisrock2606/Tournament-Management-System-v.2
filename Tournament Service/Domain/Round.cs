@@ -1,12 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
+    [DataContract]
     public class Round : IID
     {
         private int roundId;
         private string roundName;
+        [DataMember]
         public int RoundId
         {
             get { return roundId; }
@@ -19,6 +22,7 @@ namespace Domain
                 }
             }
         }
+        [DataMember]
         public string RoundName
         {
             get { return roundName; }
@@ -31,8 +35,11 @@ namespace Domain
                 }
             }
         }
+        [DataMember]
         public ObservableCollection<Player> PlayersInRound { get; set; }
+        [DataMember]
         public ObservableCollection<Match> MatchesInRound { get; set; }
+        [DataMember]
         public int ID
         {
             get { return RoundId; }
