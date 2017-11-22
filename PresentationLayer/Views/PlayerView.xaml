@@ -7,9 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid Margin="10,10,10,60"/>
+        <DataGrid Margin="10,10,10,60" ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer }" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Fornavn" Width="65" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Efternavn" MinWidth="65" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Brugernavn" MinWidth="65" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="E-mail" MinWidth="75" Binding="{Binding Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Tilføj Spiller" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
-        <Button Content="Fjern Spiller" Margin="0,0,10,35" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+        <Button Content="Fjern Spiller" Margin="0,0,10,35" Command="{Binding CommandDeletePlayer }" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </UserControl>

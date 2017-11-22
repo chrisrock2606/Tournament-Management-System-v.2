@@ -40,5 +40,7 @@ namespace DomainLayer
             Tournament newTournament = new Tournament() {GameName = newGameName, TournamentName = newTournamentName};
             TournamentList.Add(newTournament);
         }
+
+
     }
 }

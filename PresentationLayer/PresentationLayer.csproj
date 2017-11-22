@@ -62,6 +62,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\PlayerVM.cs" />
     <Compile Include="ViewModels\TournamentVM.cs" />
     <Compile Include="Views\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>

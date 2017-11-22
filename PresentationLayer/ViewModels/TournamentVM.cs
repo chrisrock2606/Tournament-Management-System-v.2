@@ -120,6 +120,10 @@ namespace PresentationLayer.ViewModels
             newTournament.TournamentName = TournamentName;
             newTournament.GameName = GameName;
             TournamentRepository.Instance.AddTournamentToList(newTournament);
+
+            if (TournamentList.Count == 1)
+                MainVM.Instance.playerVM.SelectedTournament = TournamentList[0];
+
         }
     }
 }
