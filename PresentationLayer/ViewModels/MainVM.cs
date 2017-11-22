@@ -10,6 +10,8 @@ namespace PresentationLayer.ViewModels
 {
     class MainVM : ModelBase
     {
+        public PlayerVM playerVM;
+
         private static MainVM instance;
         private Tournament selectedTournament;
 
@@ -22,6 +24,7 @@ namespace PresentationLayer.ViewModels
                 {
                     selectedTournament = value;
                     NotifyPropertyChanged();
+                    playerVM.SelectedTournament = SelectedTournament;
                 }
             }
         }
@@ -52,8 +55,9 @@ namespace PresentationLayer.ViewModels
                 return instance;
             }
         }
-        public MainVM()
+        private MainVM()
         {
+            playerVM = new PlayerVM();
         }
     }
 }
