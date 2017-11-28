@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Tournament_Web_Interface.Models.PlayerModel>
+
+@{
+    ViewData["Title"] = "ShowPlayers";
+}
+
+<h2>ShowPlayers</h2>
+
+<p>
+    <a asp-action="CreatePlayer">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayerId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
