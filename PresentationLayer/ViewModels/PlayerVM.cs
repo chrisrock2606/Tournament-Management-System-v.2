@@ -13,13 +13,13 @@ namespace PresentationLayer.ViewModels
     public class PlayerVM : ModelBase
     {
 
-#region Properties
+        #region Properties
         public ICommand CommandCreatePlayer { get; set; }
         public ICommand CommandDeletePlayer { get; set; }
 
 
-    private ObservableCollection<Player> players;
-    public ObservableCollection<Player> Players
+        private ObservableCollection<Player> players;
+        public ObservableCollection<Player> Players
         {
             get { return players; }
             set
@@ -64,6 +64,7 @@ namespace PresentationLayer.ViewModels
                 }
             }
         }
+
         #endregion
 
         public PlayerVM()

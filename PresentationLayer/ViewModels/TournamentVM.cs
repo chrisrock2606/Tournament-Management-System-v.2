@@ -22,6 +22,46 @@ namespace PresentationLayer.ViewModels
         public ICommand CommandDeleteTournament { get; set; }
         public ICommand CommandUpdateSelection { get; set; }
 
+        public ObservableCollection<int> ComboboxValues { get; set; }
+
+        private int selectedMaxValue;
+
+        public int SelectedMaxValue
+        {
+            get { return selectedMaxValue; }
+            set
+            {
+                if (value != selectedMaxValue)
+                {
+                    selectedMaxValue = value;
+
+                    if (SelectedMinValue > value)
+                        SelectedMinValue = value;
+
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private int selectedMinValue;
+        public int SelectedMinValue
+        {
+            get { return selectedMinValue; }
+            set
+            {
+                if (value != selectedMinValue)
+                {
+                    selectedMinValue = value;
+
+                    if (SelectedMaxValue < value)
+                        SelectedMaxValue = value;
+
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
         private string tournamentName;
         public string TournamentName
         {
@@ -74,6 +114,7 @@ namespace PresentationLayer.ViewModels
             CommandDeleteTournament = new Command(ExecuteCommandDeleteTournament, CanExecuteCommandDeleteTournament);
             CommandUpdateSelection = new Command(ExecuteCommandUpdateSelection);
             TournamentList = TournamentRepository.Instance.TournamentList;
+            ComboboxValues = new ObservableCollection<int>() { 1, 2, 3, 4 };
         }
 
         private void ExecuteCommandUpdateSelection(object parameter)

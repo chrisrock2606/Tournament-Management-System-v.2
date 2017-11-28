@@ -38,7 +38,7 @@ namespace PresentationLayer.ViewModels
             {
                 if (value != tournamentName)
                 {
-                    tournamentName = value;
+                    tournamentName = "Turnering: " + value;
                     NotifyPropertyChanged();
                 }
             }
