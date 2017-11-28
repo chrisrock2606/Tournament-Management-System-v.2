@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tournament_Web_Interface.Models;
@@ -19,6 +20,12 @@ namespace Tournament_Web_Interface.Controllers
         public IActionResult CreatePlayer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreatePlayer(PlayerModel newPlayer)
+        {
+            return RedirectToAction("ShowPlayers");
         }
 
         public IActionResult Error()
