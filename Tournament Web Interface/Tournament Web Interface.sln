@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tournament Web Interface", "Tournament Web Interface\Tournament Web Interface.csproj", "{A8B68373-911B-4F25-9E30-B575D47380FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tournament Web Interface", "Tournament Web Interface\Tournament Web Interface.csproj", "{A8B68373-911B-4F25-9E30-B575D47380FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAccessLayer", "ServiceAccessLayer\ServiceAccessLayer.csproj", "{11B74882-2D79-4787-AB2B-731FE2407BD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A8B68373-911B-4F25-9E30-B575D47380FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B68373-911B-4F25-9E30-B575D47380FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B68373-911B-4F25-9E30-B575D47380FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B74882-2D79-4787-AB2B-731FE2407BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B74882-2D79-4787-AB2B-731FE2407BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B74882-2D79-4787-AB2B-731FE2407BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B74882-2D79-4787-AB2B-731FE2407BD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
