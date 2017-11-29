@@ -34,7 +34,7 @@
             </StackPanel>
             
             <StackPanel Grid.Column="0">
-                <Label Content="Turneringstitel:" HorizontalAlignment="Left"/>
+                <Label Content="Turneringstitel" HorizontalAlignment="Left"/>
                 <TextBox  Height="23" Width="120" Text="{Binding TournamentName}" HorizontalAlignment="Left"/>
                 <Label Content="Spiltype" HorizontalAlignment="Left"/>
                 <TextBox Height="23" Width="120" Text="{Binding GameName}" HorizontalAlignment="Left"/>

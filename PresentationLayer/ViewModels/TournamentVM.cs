@@ -113,7 +113,7 @@ namespace PresentationLayer.ViewModels
             CommandCreateTournament = new Command(ExecuteCommandCreateTournament, CanExecuteCommandCreateTournament);
             CommandDeleteTournament = new Command(ExecuteCommandDeleteTournament, CanExecuteCommandDeleteTournament);
             CommandUpdateSelection = new Command(ExecuteCommandUpdateSelection);
-            TournamentList = TournamentRepository.Instance.TournamentList;
+            TournamentList = TournamentRepository.Instance.GetTournaments();
             ComboboxValues = new ObservableCollection<int>() { 1, 2, 3, 4 };
         }
 

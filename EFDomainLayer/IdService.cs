@@ -36,7 +36,7 @@ namespace DomainLayer
 
         private void SetId()
         {
-            foreach (var tournament in TournamentRepository.Instance.TournamentList)
+            foreach (var tournament in TournamentRepository.Instance.GetTournaments())
             {
                 if (tournament.ID > Id)
                     Id = tournament.ID;
