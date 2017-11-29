@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using DomainLayer;
 
 namespace DomainLayer
@@ -11,7 +11,7 @@ namespace DomainLayer
     public class TournamentRepository
     {
         private static TournamentRepository instance;
-        public ObservableCollection<Tournament> TournamentList;
+        private ObservableCollection<Tournament> TournamentList;
 
         private TournamentRepository()
         {
@@ -28,6 +28,11 @@ namespace DomainLayer
                 }
                 return instance;
             }
+        }
+
+        public ObservableCollection<Tournament> GetTournaments()
+        {
+            return TournamentList;
         }
 
         public void AddTournamentToList(Tournament newTournament)

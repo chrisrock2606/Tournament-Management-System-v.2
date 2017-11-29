@@ -31,10 +31,30 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <TextBlock Text="Fornavn" HorizontalAlignment="Left"/>
+                <TextBox Height="23" Width="120" Text="{Binding PlayerFirstName}" HorizontalAlignment="Left"/>
+                <TextBlock Text="Efternavn" HorizontalAlignment="Left"/>
+                <TextBox Height="23" Width="120" Text="{Binding PlayerLastName}" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Brugernavn" HorizontalAlignment="Left"/>
+                <TextBox Height="23" Width="120" Text="{Binding PlayerUserName}" HorizontalAlignment="Left"/>
+                <TextBlock Text="E-mail" HorizontalAlignment="Left"/>
+                <TextBox Height="23" Width="120" Text="{Binding PlayerEmail}" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <Button Content="Rens felter" Command="{Binding CommandClearTextBoxes}" Margin="0 10 0 0" Width="100" Height="25" VerticalAlignment="Bottom"/>
+            </StackPanel>
+
             <StackPanel Grid.Row="1" Grid.Column="3">
-                <Button Content="Tilføj Spiller" Margin="0 10 0 0" Width="100" Height="25" VerticalAlignment="Bottom"/>
+                <Button Content="Tilføj Spiller" Margin="0 10 0 0" Command="{Binding CommandCreatePlayer}" Width="100" Height="25" VerticalAlignment="Bottom"/>
                 <Button Content="Fjern Spiller" Margin="0 10 0 0" Command="{Binding CommandDeletePlayer }" Width="100" Height="25"/>
             </StackPanel>
+
+
         </Grid>
     </Grid>
 </UserControl>

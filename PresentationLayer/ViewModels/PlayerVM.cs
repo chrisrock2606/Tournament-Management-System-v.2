@@ -12,11 +12,11 @@ namespace PresentationLayer.ViewModels
 {
     public class PlayerVM : ModelBase
     {
-
-        #region Properties
         public ICommand CommandCreatePlayer { get; set; }
         public ICommand CommandDeletePlayer { get; set; }
+        public ICommand CommandClearTextBoxes { get; set; }
 
+        #region properties
 
         private ObservableCollection<Player> players;
         public ObservableCollection<Player> Players
@@ -43,6 +43,14 @@ namespace PresentationLayer.ViewModels
                 {
                     selectedPlayer = value;
                     NotifyPropertyChanged();
+
+                    if (SelectedPlayer != null)
+                    {
+                        PlayerFirstName = SelectedPlayer.FirstName;
+                        PlayerLastName = SelectedPlayer.LastName;
+                        PlayerUserName = SelectedPlayer.UserName;
+                        PlayerEmail = SelectedPlayer.Email;
+                    }
                 }
             }
         }
@@ -65,22 +73,93 @@ namespace PresentationLayer.ViewModels
             }
         }
 
+        private string playerFirstName;
+        public string PlayerFirstName
+        {
+            get { return playerFirstName; }
+            set
+            {
+
+                if (value != playerFirstName)
+                {
+                    playerFirstName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string playerLastName;
+        public string PlayerLastName
+        {
+            get { return playerLastName; }
+            set
+            {
+
+                if (value != playerLastName)
+                {
+                    playerLastName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string playerUserName;
+        public string PlayerUserName
+        {
+            get { return playerUserName; }
+            set
+            {
+
+                if (value != playerUserName)
+                {
+                    playerUserName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string playerEmail;
+        public string PlayerEmail
+        {
+            get { return playerEmail; }
+            set
+            {
+
+                if (value != playerEmail)
+                {
+                    playerEmail = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         #endregion
 
         public PlayerVM()
         {
             CommandCreatePlayer = new Command(ExecuteCommandCreatePlayer, CanExecuteCommandCreatePlayer);
             CommandDeletePlayer = new Command(ExecuteCommandDeletePlayer, CanExecuteCommandDeletePlayer);
+            CommandClearTextBoxes = new Command(ExecuteCommandClearTextBoxes, CanExecuteCommandClearTextBoxes);
         }
 
-#region Commands
+        #region Commands
 
         private bool CanExecuteCommandCreatePlayer(object parameter)
         {
+            if (PlayerFirstName != null && MainVM.Instance.SelectedTournament != null)
+                return true;
+
             return false;
         }
         private void ExecuteCommandCreatePlayer(object parameter)
         {
+            Player player = new Player();
+            player.FirstName = PlayerFirstName;
+            player.LastName = PlayerLastName;
+            player.UserName = PlayerUserName;
+            player.Email = PlayerEmail;
+            player.ID = IdService.Instance.GetNewId();
+
+            MainVM.Instance.SelectedTournament.Players.Add(player);
         }
 
         private bool CanExecuteCommandDeletePlayer(object parameter)
@@ -100,9 +179,18 @@ namespace PresentationLayer.ViewModels
             }
         }
 
-#endregion
+        private bool CanExecuteCommandClearTextBoxes(object parameter)
+        {
+            return true;
+        }
+        private void ExecuteCommandClearTextBoxes(object parameter)
+        {
+            PlayerFirstName = null;
+            PlayerLastName = null;
+            PlayerUserName = null;
+            PlayerEmail = null;
+        }
 
-
-
+        #endregion
     }
 }
