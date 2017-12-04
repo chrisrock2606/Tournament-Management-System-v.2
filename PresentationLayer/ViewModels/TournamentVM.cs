@@ -165,6 +165,23 @@ namespace PresentationLayer.ViewModels
             if (TournamentList.Count == 1)
                 MainVM.Instance.playerVM.SelectedTournament = TournamentList[0];
 
+            if (newTournament.TournamentName == "Spanish")
+            {
+                GeneratePlayers(); //slettes (sammen med klassen names og filen)
+            }
+
+            void GeneratePlayers()
+            {
+                    Names.GetNames();
+                    List<string> firstNames = Names.FirstNames;
+                    List<string> lastNames = Names.LastNames;
+
+                    for (int i = 0; i < firstNames.Count; i++)
+                    {
+                        Player player = new Player() { FirstName = firstNames[i], LastName = lastNames[i] };
+                        newTournament.Players.Add(player);
+                    }                
+            }
         }
     }
 }

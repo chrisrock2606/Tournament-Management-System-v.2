@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PresentationLayer.Properties
-{
-
-
+namespace PresentationLayer.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,70 @@ namespace PresentationLayer.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PresentationLayer.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last name, first name,gender,race
+        ///adams, shirley m ,f,hispanic
+        ///alonso, ana d ,f,hispanic
+        ///alonzo, miriam  ,f,hispanic
+        ///alvarez, ivette  ,f,hispanic
+        ///amador, saray  ,f,hispanic
+        ///batista, niurka  ,f,hispanic
+        ///betancourt, maria  ,f,hispanic
+        ///blake, merienne  ,f,hispanic
+        ///boyd, rosalinda n ,f,hispanic
+        ///braconi, migdalia  ,f,hispanic
+        ///bueno, marina v ,f,hispanic
+        ///burgos, carmen  ,f,hispanic
+        ///cabrera, zaida e ,f,hispanic
+        ///calderon, lurvin p ,f,hispanic
+        ///calderon, melissa  ,f,hispanic
+        ///candelario, mileyka k ,f,hispanic
+        ///cannon,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Hispanic_Female_Names {
+            get {
+                return ResourceManager.GetString("Hispanic_Female_Names", resourceCulture);
             }
         }
     }
