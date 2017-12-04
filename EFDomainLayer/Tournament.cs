@@ -106,15 +106,6 @@ namespace DomainLayer
         {
             Players = new ObservableCollection<Player>();
             Rounds = new ObservableCollection<Round>();
-            HardCodedPlayers();
-        }
-
-        private void HardCodedPlayers()
-        {
-            Players.Add(new Player { FirstName = "Test", LastName = "Test", UserName = "SFG", Email = "ef@email.com" });
-            Players.Add(new Player { FirstName = "sdf", LastName = "asd", UserName = "SFG", Email = "ef@email.com" });
-            Players.Add(new Player { FirstName = "werwe", LastName = "sdfewr", UserName = "SFG", Email = "ef@email.com" });
-
         }
     }
 }
