@@ -11,6 +11,7 @@ using System.Globalization;
 using DomainLayer;
 using ServiceAccessLayer;
 
+
 namespace PresentationLayer.ViewModels
 {
     class TournamentVM : ModelBase
