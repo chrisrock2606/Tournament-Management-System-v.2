@@ -11,7 +11,7 @@ namespace DomainLayer
     public class TournamentRepository
     {
         private static TournamentRepository instance;
-        private ObservableCollection<Tournament> TournamentList;
+        public ObservableCollection<Tournament> TournamentList;
 
         private TournamentRepository()
         {

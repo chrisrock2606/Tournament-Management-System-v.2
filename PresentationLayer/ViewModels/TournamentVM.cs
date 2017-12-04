@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Data;
 using System.Globalization;
 using DomainLayer;
+using ServiceAccessLayer;
 
 namespace PresentationLayer.ViewModels
 {
@@ -17,7 +18,7 @@ namespace PresentationLayer.ViewModels
         #region Properties
 
         public ObservableCollection<Tournament> TournamentList { get; set; }
-
+        private SaveData SD;
         public ICommand CommandCreateTournament { get; set; }
         public ICommand CommandDeleteTournament { get; set; }
         public ICommand CommandUpdateSelection { get; set; }
@@ -115,6 +116,7 @@ namespace PresentationLayer.ViewModels
             CommandUpdateSelection = new Command(ExecuteCommandUpdateSelection);
             TournamentList = TournamentRepository.Instance.GetTournaments();
             ComboboxValues = new ObservableCollection<int>() { 1, 2, 3, 4 };
+            SD = new SaveData();
         }
 
         private void ExecuteCommandUpdateSelection(object parameter)
@@ -161,6 +163,7 @@ namespace PresentationLayer.ViewModels
             newTournament.TournamentName = TournamentName;
             newTournament.GameName = GameName;
             TournamentRepository.Instance.AddTournamentToList(newTournament);
+            SD.SaveTournament(newTournament);
 
             if (TournamentList.Count == 1)
                 MainVM.Instance.playerVM.SelectedTournament = TournamentList[0];

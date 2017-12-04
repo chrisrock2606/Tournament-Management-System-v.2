@@ -127,6 +127,10 @@
       <Project>{EE9E1269-527B-4C5D-A0C3-522A324BCFB4}</Project>
       <Name>DomainLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceAccessLayer\ServiceAccessLayer.csproj">
+      <Project>{1ac36913-1493-4c73-9f1f-b414c1db6bdd}</Project>
+      <Name>ServiceAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
