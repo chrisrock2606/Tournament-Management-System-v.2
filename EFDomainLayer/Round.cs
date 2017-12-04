@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer
 {
-    public class Round : IID
+    public class Round : ModelBase
     {
         private int roundId;
         private string roundName;
@@ -22,7 +22,7 @@ namespace DomainLayer
                 if (roundId != value)
                 {
                     roundId = value;
-                    RaisePropertyChanged("RoundId");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -34,32 +34,17 @@ namespace DomainLayer
                 if (roundName != value)
                 {
                     roundName = value;
-                    RaisePropertyChanged("RoundName");
+                    NotifyPropertyChanged();
                 }
             }
         }
-        public ObservableCollection<Player> PlayersInRound { get; set; }
         public ObservableCollection<Match> Matches { get; set; }
-        public int ID
-        {
-            get { return RoundId; }
-
-            set { RoundId = value; }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
+        public int Id { get; set; }
 
         public Round()
         {
-            PlayersInRound = new ObservableCollection<Player>();
             Matches = new ObservableCollection<Match>();
+            Id = IdService.Instance.GetNewId();
         }
     }
 }

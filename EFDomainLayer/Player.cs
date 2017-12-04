@@ -8,26 +8,14 @@ using System.Threading.Tasks;
 
 namespace DomainLayer
 {
-    public class Player : INotifyPropertyChanged, IID
+    public class Player : ModelBase
     {
-        private int playerId;
         private string firstName;
         private string lastName;
         private string userName;
         private string email;
-        private string phoneNr;
-        public int PlayerId
-        {
-            get { return playerId; }
-            set
-            {
-                if (playerId != value)
-                {
-                    playerId = value;
-                    RaisePropertyChanged("PlayerId");
-                }
-            }
-        }
+        private bool defeated;
+
         public string FirstName
         {
             get { return firstName; }
@@ -36,7 +24,7 @@ namespace DomainLayer
                 if (firstName != value)
                 {
                     firstName = value;
-                    RaisePropertyChanged("FirstName");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -48,7 +36,7 @@ namespace DomainLayer
                 if (lastName != value)
                 {
                     lastName = value;
-                    RaisePropertyChanged("LastName");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -61,7 +49,7 @@ namespace DomainLayer
                 if (userName != value)
                 {
                     userName = value;
-                    RaisePropertyChanged("UserName");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -74,44 +62,30 @@ namespace DomainLayer
                 if (email != value)
                 {
                     email = value;
-                    RaisePropertyChanged("Email");
+                    NotifyPropertyChanged();
                 }
             }
         }
-        //PhoneNr er en string da det er data der ikke skal laves udregninger på
-        public string PhoneNr
+        public bool Defeated
         {
-            get { return phoneNr; }
+            get { return defeated; }
             set
             {
-                if (phoneNr != value)
+                if (defeated != value)
                 {
-                    phoneNr = value;
-                    RaisePropertyChanged("PhoneNr");
+                    defeated = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
-        public int ID
-        {
-            get { return PlayerId; }
+        public int Id { get; set; }
 
-            set { PlayerId = value; }
-        }
         public List<int> MatchIdValues { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
 
         public Player()
         {
             MatchIdValues = new List<int>();
+            Id = IdService.Instance.GetNewId();
         }
 
     }

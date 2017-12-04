@@ -12,26 +12,12 @@ using DomainLayer;
 namespace DomainLayer
 {
     
-    public class Tournament : INotifyPropertyChanged, IID
+    public class Tournament : ModelBase
     {
-        private int tournamentId;
         private string tournamentName;
         private string gameName;
         private string reward;
         private string tournamentStatus;
-
-        public int TournamentId
-        {
-            get { return tournamentId; }
-            set
-            {
-                if (tournamentId != value)
-                {
-                    tournamentId = value;
-                    RaisePropertyChanged("TournamentId");
-                }
-            }
-        }
         public string TournamentName
         {
             get { return tournamentName; }
@@ -40,7 +26,7 @@ namespace DomainLayer
                 if (tournamentName != value)
                 {
                     tournamentName = value;
-                    RaisePropertyChanged("TournamentName");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -52,7 +38,7 @@ namespace DomainLayer
                 if (gameName != value)
                 {
                     gameName = value;
-                    RaisePropertyChanged("GameName");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -64,7 +50,7 @@ namespace DomainLayer
                 if (reward != value)
                 {
                     reward = value;
-                    RaisePropertyChanged("Reward");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -76,7 +62,7 @@ namespace DomainLayer
                 if (tournamentStatus != value)
                 {
                     tournamentStatus = value;
-                    RaisePropertyChanged("TournamentStatus");
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -84,28 +70,13 @@ namespace DomainLayer
         public ObservableCollection<Player> Players { get; set; }
         public ObservableCollection<Round> Rounds { get; set; }
 
-        public int ID
-        {
-            get { return TournamentId; }
-
-            set { TournamentId = value; }
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
+        public int Id { get; set; }
 
         public Tournament()
         {
             Players = new ObservableCollection<Player>();
             Rounds = new ObservableCollection<Round>();
+            Id = IdService.Instance.GetNewId();
         }
     }
 }

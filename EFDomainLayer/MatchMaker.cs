@@ -10,25 +10,28 @@ namespace DomainLayer
 {
     public class MatchMaker
     {
-        public int MaxPlayersInMatch { get; }
-        public int MinPlayersInMatch { get; }
-        public ObservableCollection<Player> Players { get; }
-        public Round Round { get; }
+        public int MaxPlayersInMatch { get; private set; }
+        public int MinPlayersInMatch { get; private set; }
+        public ObservableCollection<Player> Players { get; private set; }
+        public Round Round { get; private set; }
 
-        ObservableCollection<Player> playersCompetedInPreviousRound = new ObservableCollection<Player>();
-        ObservableCollection<Player> playersImpossibleToGroupInRound = new ObservableCollection<Player>();
+        public ObservableCollection<Player> PlayersCompetedInPreviousRound { get; private set; }
+        public ObservableCollection<Player> PlayersImpossibleToGroupInRound { get; private set;}
 
-
-        TournamentRepository tournament = TournamentRepository.Instance;
-
-
-        public MatchMaker(int maxPlayersInMatch, int minPlayersInMatch, Round round)
+        public MatchMaker()
         {
+            PlayersCompetedInPreviousRound = new ObservableCollection<Player>();
+            PlayersImpossibleToGroupInRound = new ObservableCollection<Player>();
+        }
+        public Round GetNewRound(int maxPlayersInMatch, int minPlayersInMatch, ObservableCollection<Player> players)
+        {
+            Round = new Round();
             this.MaxPlayersInMatch = maxPlayersInMatch;
             this.MinPlayersInMatch = minPlayersInMatch;
-            this.Players = round.PlayersInRound;
-            this.Round = round;
-        }
+            this.Players = players;
+
+            return Round;
+        }   
 
         public void AddPlayersToMatches()
         {
@@ -40,14 +43,14 @@ namespace DomainLayer
                 {
                     if (match.PlayersInMatch.Count == 0 || CheckIfCompetedBefore(player, match) == false)
                     {
-                        player.MatchIdValues.Add(match.ID);
+                        player.MatchIdValues.Add(match.Id);
                         match.PlayersInMatch.Add(player);
                         break;
                     }
 
                     else if (CheckIfCompetedBefore(player, match) == true)
                     {
-                        playersCompetedInPreviousRound.Add(player);
+                        PlayersCompetedInPreviousRound.Add(player);
                         break;
                     }
                 }
@@ -64,7 +67,6 @@ namespace DomainLayer
             for (int i = 0; i < numberOfMatchesToCreate; i++)
             {
                 Match match = new Match();
-                match.ID = IdService.Instance.GetNewId();
                 Round.Matches.Add(match);
             }
         }
@@ -86,15 +88,15 @@ namespace DomainLayer
                 }
             }
             if (MaxPlayersInMatch == MinPlayersInMatch)
-                PlayersImpossibleToGroupInRound();
+                FindPlayersImpossibleToGroupInRound();
         }
 
-        private void PlayersImpossibleToGroupInRound()
+        private void FindPlayersImpossibleToGroupInRound()
         {
             foreach (var match in Round.Matches)
             {
                 if (match.PlayersInMatch.Count < MinPlayersInMatch)
-                    playersImpossibleToGroupInRound = match.PlayersInMatch;
+                    PlayersImpossibleToGroupInRound = match.PlayersInMatch;
             }
         }
 

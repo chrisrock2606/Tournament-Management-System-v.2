@@ -23,6 +23,8 @@ namespace PresentationLayer.ViewModels
         public ICommand CommandCreateTournament { get; set; }
         public ICommand CommandDeleteTournament { get; set; }
         public ICommand CommandUpdateSelection { get; set; }
+        public ICommand CommandCreateRound { get; set; }
+
 
         public ObservableCollection<int> ComboboxValues { get; set; }
 
@@ -103,6 +105,21 @@ namespace PresentationLayer.ViewModels
                     selectedTournamentItemIndex = value;
                     MainVM.Instance.SelectedTournament = TournamentList[selectedTournamentItemIndex];
                     MainVM.Instance.TournamentName = TournamentList[selectedTournamentItemIndex].TournamentName;
+                    Rounds = RoundsAsString();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string rounds;
+        public string Rounds
+        {
+            get { return rounds; }
+            set
+            {
+                if (value != rounds)
+                {
+                    rounds = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -115,6 +132,7 @@ namespace PresentationLayer.ViewModels
             CommandCreateTournament = new Command(ExecuteCommandCreateTournament, CanExecuteCommandCreateTournament);
             CommandDeleteTournament = new Command(ExecuteCommandDeleteTournament, CanExecuteCommandDeleteTournament);
             CommandUpdateSelection = new Command(ExecuteCommandUpdateSelection);
+            CommandCreateRound = new Command(ExecuteCommandCreateRound, CanExecuteCommandCreateRound);
             TournamentList = TournamentRepository.Instance.GetTournaments();
             ComboboxValues = new ObservableCollection<int>() { 1, 2, 3, 4 };
             SD = new SaveData();
@@ -122,6 +140,31 @@ namespace PresentationLayer.ViewModels
 
         private void ExecuteCommandUpdateSelection(object parameter)
         {
+        }
+
+
+        private void ExecuteCommandCreateRound(object parameter)
+        {
+            ObservableCollection<Player> playersInGame = new ObservableCollection<Player>();
+
+            foreach (var player in MainVM.Instance.SelectedTournament.Players.Where(p => p.Defeated == false))
+                playersInGame.Add(player);
+
+            MatchMaker mm = new MatchMaker();
+            Round round = mm.GetNewRound(SelectedMaxValue, SelectedMinValue, playersInGame);
+            round.RoundName = (MainVM.Instance.SelectedTournament.Rounds.Count + 1).ToString();
+
+            MainVM.Instance.SelectedTournament.Rounds.Add(round);
+
+            Rounds = RoundsAsString();
+        }
+
+        private bool CanExecuteCommandCreateRound(object parameter)
+        {
+            if (MainVM.Instance.SelectedTournament != null && MainVM.Instance.SelectedTournament.Players.Count > SelectedMinValue)
+                return true;
+
+            return false;
         }
 
         private bool CanExecuteCommandDeleteTournament(object parameter)
@@ -149,18 +192,7 @@ namespace PresentationLayer.ViewModels
 
         private void ExecuteCommandCreateTournament(object parameter)
         {
-            int newTournamentId;
-            if (TournamentList.Count == 0)
-            {
-                newTournamentId = 1;
-            }
-            else
-            {
-                TournamentList.OrderBy(x => x.ID);
-                newTournamentId = TournamentList[TournamentList.Count - 1].ID + 1;
-            }
             Tournament newTournament = new Tournament();
-            newTournament.ID = newTournamentId;
             newTournament.TournamentName = TournamentName;
             newTournament.GameName = GameName;
             TournamentRepository.Instance.AddTournamentToList(newTournament);
@@ -171,21 +203,36 @@ namespace PresentationLayer.ViewModels
 
             if (newTournament.TournamentName == "Spanish")
             {
-                GeneratePlayers(); //slettes (sammen med klassen names og filen)
+                GeneratePlayers(newTournament); //slettes (sammen med klassen Names og filen)
             }
+        }
 
-            void GeneratePlayers()
+        void GeneratePlayers(Tournament tournament)
+        {
+            Names.GetNames();
+            List<string> firstNames = Names.FirstNames;
+            List<string> lastNames = Names.LastNames;
+
+            for (int i = 0; i < firstNames.Count; i++)
             {
-                    Names.GetNames();
-                    List<string> firstNames = Names.FirstNames;
-                    List<string> lastNames = Names.LastNames;
-
-                    for (int i = 0; i < firstNames.Count; i++)
-                    {
-                        Player player = new Player() { FirstName = firstNames[i], LastName = lastNames[i] };
-                        newTournament.Players.Add(player);
-                    }                
+                Player player = new Player() { FirstName = firstNames[i], LastName = lastNames[i] };
+                tournament.Players.Add(player);
             }
+        }
+
+        private string RoundsAsString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            if (MainVM.Instance.SelectedTournament != null && MainVM.Instance.SelectedTournament.Rounds.Count > 0)
+            {
+                foreach (var item in MainVM.Instance.SelectedTournament.Rounds)
+                {
+                    builder.Append("\n" + "Runde: " + item.RoundName);
+                    builder.Append("\n" + "Antal Matchgrupper: " + item.Matches.Count + "\n");
+                }
+            }
+            return builder.ToString();
         }
     }
 }

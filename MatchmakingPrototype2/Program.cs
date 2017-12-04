@@ -48,10 +48,10 @@ namespace MatchmakingPrototype2
             {
                 foreach (var round in tournament.Rounds)
                 {
-                    Console.WriteLine("Runde: " + round.ID);
+                    Console.WriteLine("Runde: " + round.Id);
                     foreach (var match in round.Matches)
                     {
-                        Console.WriteLine("matchID: " + match.ID);
+                        Console.WriteLine("matchID: " + match.Id);
                         foreach (var player in match.PlayersInMatch)
                         {
                             Console.WriteLine(player.FirstName);

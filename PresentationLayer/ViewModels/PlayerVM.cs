@@ -157,7 +157,7 @@ namespace PresentationLayer.ViewModels
             player.LastName = PlayerLastName;
             player.UserName = PlayerUserName;
             player.Email = PlayerEmail;
-            player.ID = IdService.Instance.GetNewId();
+            player.Id = IdService.Instance.GetNewId();
 
             MainVM.Instance.SelectedTournament.Players.Add(player);
         }

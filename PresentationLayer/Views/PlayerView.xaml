@@ -19,10 +19,10 @@
                 <DataGridTextColumn Header="Efternavn" Width="auto" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Brugernavn" Width="auto" Binding="{Binding UserName}"/>
                 <DataGridTextColumn Header="E-mail" Width="auto" Binding="{Binding Email}"/>
+                <DataGridCheckBoxColumn Header="Udgået" Binding="{Binding Defeated}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

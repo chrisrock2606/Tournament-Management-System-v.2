@@ -38,18 +38,18 @@ namespace DomainLayer
         {
             foreach (var tournament in TournamentRepository.Instance.GetTournaments())
             {
-                if (tournament.ID > Id)
-                    Id = tournament.ID;
+                if (tournament.Id > Id)
+                    Id = tournament.Id;
 
                 foreach (var round in tournament.Rounds)
                 {
-                    if (round.ID > Id)
-                        Id = round.ID;
+                    if (round.Id > Id)
+                        Id = round.Id;
                     
                     foreach (var match in round.Matches)
                     {
-                        if (match.ID > Id)
-                            Id = match.ID;
+                        if (match.Id > Id)
+                            Id = match.Id;
                     }
                 }
             }

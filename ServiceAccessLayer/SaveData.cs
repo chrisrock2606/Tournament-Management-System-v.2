@@ -24,7 +24,7 @@ namespace ServiceAccessLayer
         public void SaveTournament(DomainLayer.Tournament newTournament)
         {
             dummyTournament = new TournamentService.Tournament();
-            dummyTournament.ID = newTournament.ID;
+            dummyTournament.ID = newTournament.Id;
             dummyTournament.GameName = newTournament.GameName;
             dummyTournament.Reward = newTournament.Reward;
             dummyTournament.TournamentName = newTournament.TournamentName;
@@ -37,7 +37,7 @@ namespace ServiceAccessLayer
         {
             for (int i = 0; i < newRounds.Count; i++)
             {
-                dummyTournament.RoundsInTournament[i].ID = newRounds[i].ID;
+                dummyTournament.RoundsInTournament[i].ID = newRounds[i].Id;
                 dummyTournament.RoundsInTournament[i].RoundName = newRounds[i].RoundName;
 
             }
@@ -47,11 +47,10 @@ namespace ServiceAccessLayer
         {
             for (int i = 0; i < NewPlayers.Count; i++)
             {
-                dummyTournament.PlayersInTournament[i].ID = NewPlayers[i].ID;
+                dummyTournament.PlayersInTournament[i].ID = NewPlayers[i].Id;
                 dummyTournament.PlayersInTournament[i].FirstName = NewPlayers[i].FirstName;
                 dummyTournament.PlayersInTournament[i].LastName = NewPlayers[i].LastName;
                 dummyTournament.PlayersInTournament[i].Email = NewPlayers[i].Email;
-                dummyTournament.PlayersInTournament[i].PhoneNr = NewPlayers[i].PhoneNr;
                 dummyTournament.PlayersInTournament[i].UserName = NewPlayers[i].UserName;
             }
         }
