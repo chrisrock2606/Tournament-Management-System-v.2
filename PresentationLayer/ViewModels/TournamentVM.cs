@@ -150,8 +150,8 @@ namespace PresentationLayer.ViewModels
             foreach (var player in MainVM.Instance.SelectedTournament.Players.Where(p => p.Defeated == false))
                 playersInGame.Add(player);
 
-            MatchMaker mm = new MatchMaker();
-            Round round = mm.GetNewRound(SelectedMaxValue, SelectedMinValue, playersInGame);
+            MatchMaker mm = new MatchMaker(SelectedMaxValue, SelectedMinValue, playersInGame);
+            Round round = mm.GetNewRound();
             round.RoundName = (MainVM.Instance.SelectedTournament.Rounds.Count + 1).ToString();
 
             MainVM.Instance.SelectedTournament.Rounds.Add(round);

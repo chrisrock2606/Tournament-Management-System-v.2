@@ -18,17 +18,20 @@ namespace DomainLayer
         public ObservableCollection<Player> PlayersCompetedInPreviousRound { get; private set; }
         public ObservableCollection<Player> PlayersImpossibleToGroupInRound { get; private set;}
 
-        public MatchMaker()
+        public MatchMaker(int maxPlayersInMatch, int minPlayersInMatch, ObservableCollection<Player> players)
         {
             PlayersCompetedInPreviousRound = new ObservableCollection<Player>();
             PlayersImpossibleToGroupInRound = new ObservableCollection<Player>();
-        }
-        public Round GetNewRound(int maxPlayersInMatch, int minPlayersInMatch, ObservableCollection<Player> players)
-        {
             Round = new Round();
+
             this.MaxPlayersInMatch = maxPlayersInMatch;
             this.MinPlayersInMatch = minPlayersInMatch;
             this.Players = players;
+
+        }
+        public Round GetNewRound()
+        {
+            AddPlayersToMatches();
 
             return Round;
         }   
@@ -58,7 +61,7 @@ namespace DomainLayer
             CheckIfMatchesAreTooSmall();
         }
 
-        private void CreateNewMatches()
+        public ObservableCollection<Match> CreateNewMatches()
         {
             int numberOfMatchesToCreate = Players.Count / MaxPlayersInMatch;
             if (Players.Count % MaxPlayersInMatch != 0)
@@ -69,6 +72,7 @@ namespace DomainLayer
                 Match match = new Match();
                 Round.Matches.Add(match);
             }
+            return Round.Matches;
         }
 
         private void CheckIfMatchesAreTooSmall()
