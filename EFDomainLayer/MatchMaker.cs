@@ -22,7 +22,6 @@ namespace DomainLayer
         {
             PlayersCompetedInPreviousRound = new ObservableCollection<Player>();
             PlayersImpossibleToGroupInRound = new ObservableCollection<Player>();
-            Round = new Round();
 
             this.MaxPlayersInMatch = maxPlayersInMatch;
             this.MinPlayersInMatch = minPlayersInMatch;
@@ -31,8 +30,9 @@ namespace DomainLayer
         }
         public Round GetNewRound()
         {
-            AddPlayersToMatches();
+            Round = new Round();
 
+            AddPlayersToMatches();
             return Round;
         }   
 
@@ -77,30 +77,33 @@ namespace DomainLayer
 
         private void CheckIfMatchesAreTooSmall()
         {
-            foreach (var match in Round.Matches)
+            foreach (var match in Round.Matches.Where(m => m.PlayersInMatch.Count < MinPlayersInMatch))
             {
-                if (match.PlayersInMatch.Count < MinPlayersInMatch && MaxPlayersInMatch != MinPlayersInMatch)
+                foreach (var fullMatch in Round.Matches.Where(x => x.PlayersInMatch.Count == MaxPlayersInMatch && x.PlayersInMatch.Count - 1 > MinPlayersInMatch))
                 {
-                    foreach (var fullMatch in Round.Matches.Where(x => x.PlayersInMatch.Count == MaxPlayersInMatch))
-                    {
-                        var participant = fullMatch.PlayersInMatch[0];
-                        fullMatch.PlayersInMatch.Remove(participant);
+                    var participant = fullMatch.PlayersInMatch[0];
+                    fullMatch.PlayersInMatch.Remove(participant);
 
-                        match.PlayersInMatch.Add(participant);
-                        break;
-                    }
+                    match.PlayersInMatch.Add(participant);
+                    break;
                 }
             }
-            if (MaxPlayersInMatch == MinPlayersInMatch)
-                FindPlayersImpossibleToGroupInRound();
+            FindPlayersImpossibleToGroupInRound();
         }
 
         private void FindPlayersImpossibleToGroupInRound()
         {
-            foreach (var match in Round.Matches)
+
+            for (int i = 0; i < Round.Matches.Count; i++)
             {
-                if (match.PlayersInMatch.Count < MinPlayersInMatch)
-                    PlayersImpossibleToGroupInRound = match.PlayersInMatch;
+                if (Round.Matches[i].PlayersInMatch.Count < MinPlayersInMatch)
+                {
+                    foreach (var player in Round.Matches[i].PlayersInMatch)
+                    {
+                        PlayersImpossibleToGroupInRound.Add(player);
+                    }
+                    Round.Matches.Remove(Round.Matches[i]);
+                }
             }
         }
 

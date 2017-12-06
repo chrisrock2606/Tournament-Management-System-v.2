@@ -152,7 +152,7 @@ namespace PresentationLayer.ViewModels
 
             MatchMaker mm = new MatchMaker(SelectedMaxValue, SelectedMinValue, playersInGame);
             Round round = mm.GetNewRound();
-            round.RoundName = (MainVM.Instance.SelectedTournament.Rounds.Count + 1).ToString();
+            round.RoundName = "Runde " + (MainVM.Instance.SelectedTournament.Rounds.Count + 1).ToString();
 
             MainVM.Instance.SelectedTournament.Rounds.Add(round);
 
@@ -228,7 +228,7 @@ namespace PresentationLayer.ViewModels
             {
                 foreach (var item in MainVM.Instance.SelectedTournament.Rounds)
                 {
-                    builder.Append("\n" + "Runde: " + item.RoundName);
+                    builder.Append("\n" + item.RoundName);
                     builder.Append("\n" + "Antal Matchgrupper: " + item.Matches.Count + "\n");
                 }
             }

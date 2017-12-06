@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainLayer;
 using EFDomainLayer;
-
+using System.Collections.ObjectModel;
 namespace MatchmakingPrototype2
 {
     static class Program
     {
-        public static List<Player> playerList = new List<Player>();
+        public static ObservableCollection<Player> playerList = new ObservableCollection<Player>();
 
         static void Main(string[] args)
         {
@@ -26,40 +26,40 @@ namespace MatchmakingPrototype2
                 playerList.Add(player);
             }
 
-            Tournament tournament = new Tournament();
-            Round round = new Round();
-            foreach (var player in playerList)
-                round.PlayersInRound.Add(player);
+            MatchMaker mm = new MatchMaker(4, 3, playerList);
 
-            MatchMaker mm = new MatchMaker(4, 4, round);
-            tournament.Rounds.Add(round);
+            Round round = mm.GetNewRound();
 
-            TournamentRepository.Instance.TournamentList.Add(tournament);
 
-            mm.AddPlayersToMatches();
+            Write(round);
 
-            Write();
+            if (mm.PlayersImpossibleToGroupInRound.Count > 0)
+            {
+                Console.WriteLine("\n players not in matchgroups: ");
+                foreach (var item in mm.PlayersImpossibleToGroupInRound)
+                {
+                    Console.WriteLine(item.FirstName);
+                }
+            }
+
+            Console.ReadLine();
+            Run();
         }
 
-        static void Write()
+        static void Write(Round round)
         {
 
-            foreach (var tournament in TournamentRepository.Instance.TournamentList)
-            {
-                foreach (var round in tournament.Rounds)
+
+                foreach (var match in round.Matches)
                 {
-                    Console.WriteLine("Runde: " + round.Id);
-                    foreach (var match in round.Matches)
+                Console.WriteLine("matchID: " + match.Id);
+
+                foreach (var player in match.PlayersInMatch)
                     {
-                        Console.WriteLine("matchID: " + match.Id);
-                        foreach (var player in match.PlayersInMatch)
-                        {
-                            Console.WriteLine(player.FirstName);
-                        }
+                    Console.WriteLine(player.FirstName);
+                        
                     }
                 }
-                Console.ReadLine();
             }
-        }
     }
 }
