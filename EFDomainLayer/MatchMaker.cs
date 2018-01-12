@@ -14,11 +14,13 @@ namespace DomainLayer
         public int MinPlayersInMatch { get; private set; }
         public ObservableCollection<Player> Players { get; private set; }
         public Round Round { get; private set; }
+        public Tournament tournament { get; private set; }
+        
 
         public ObservableCollection<Player> PlayersCompetedInPreviousRound { get; private set; }
         public ObservableCollection<Player> PlayersImpossibleToGroupInRound { get; private set;}
 
-        public MatchMaker(int maxPlayersInMatch, int minPlayersInMatch, ObservableCollection<Player> players)
+        public MatchMaker(int maxPlayersInMatch, int minPlayersInMatch, ObservableCollection<Player> players, Tournament tournament)
         {
             PlayersCompetedInPreviousRound = new ObservableCollection<Player>();
             PlayersImpossibleToGroupInRound = new ObservableCollection<Player>();
@@ -31,7 +33,6 @@ namespace DomainLayer
         public Round GetNewRound()
         {
             Round = new Round();
-
             AddPlayersToMatches();
             return Round;
         }   

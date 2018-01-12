@@ -22,16 +22,16 @@ namespace TestProject
             }
         }
 
-        [TestMethod]
-        public void CreateNewMatches_FourMatchesCreated()
-        {
-            int maxPlayersInMatch = 4;
-            int minPlayersInMatch = 3;
+        //[TestMethod]
+        //public void CreateNewMatches_FourMatchesCreated()
+        //{
+        //    int maxPlayersInMatch = 4;
+        //    int minPlayersInMatch = 3;
 
-            MatchMaker mm = new MatchMaker(maxPlayersInMatch, minPlayersInMatch, players);
-            matches = mm.CreateNewMatches();
+        //    MatchMaker mm = new MatchMaker(maxPlayersInMatch, minPlayersInMatch, players);
+        //    matches = mm.CreateNewMatches();
 
-            Assert.IsTrue(matches.Count == 4);
-        }
+        //    Assert.IsTrue(matches.Count == 4);
+        //}
     }
 }

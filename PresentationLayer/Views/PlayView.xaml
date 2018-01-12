@@ -12,14 +12,14 @@
             <RowDefinition Height='0.5*' />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" ItemsSource="{Binding XX}" SelectedIndex="{Binding XX}" IsReadOnly="True" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <!--<DataGridTextColumn Header="ID" Width="35" Binding="{Binding TournamentId}"/>
-                <DataGridTextColumn Header="Turnerings Navn" MinWidth="100" Binding="{Binding TournamentName}"/>
-                <DataGridTextColumn Header="Spil Navn" MinWidth="75" Binding="{Binding GameName}"/>-->
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Name="stack1">
+            <StackPanel Orientation="Horizontal" Name="stack2">
 
-
+                <StackPanel Name="stack3">
+                    
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

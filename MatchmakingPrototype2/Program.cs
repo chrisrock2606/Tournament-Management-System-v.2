@@ -26,7 +26,7 @@ namespace MatchmakingPrototype2
                 playerList.Add(player);
             }
 
-            MatchMaker mm = new MatchMaker(4, 3, playerList);
+            MatchMaker mm = new MatchMaker(4, 3, playerList, new Tournament());
 
             Round round = mm.GetNewRound();
 

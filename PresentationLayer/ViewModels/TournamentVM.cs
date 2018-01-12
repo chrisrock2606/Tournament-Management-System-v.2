@@ -135,6 +135,8 @@ namespace PresentationLayer.ViewModels
             CommandCreateRound = new Command(ExecuteCommandCreateRound, CanExecuteCommandCreateRound);
             TournamentList = TournamentRepository.Instance.GetTournaments();
             ComboboxValues = new ObservableCollection<int>() { 1, 2, 3, 4 };
+            SelectedMaxValue = 1;
+            SelectedMinValue = 1;
             SD = new SaveData();
         }
 
@@ -150,7 +152,7 @@ namespace PresentationLayer.ViewModels
             foreach (var player in MainVM.Instance.SelectedTournament.Players.Where(p => p.Defeated == false))
                 playersInGame.Add(player);
 
-            MatchMaker mm = new MatchMaker(SelectedMaxValue, SelectedMinValue, playersInGame);
+            MatchMaker mm = new MatchMaker(SelectedMaxValue, SelectedMinValue, playersInGame, MainVM.Instance.SelectedTournament);
             Round round = mm.GetNewRound();
             round.RoundName = "Runde " + (MainVM.Instance.SelectedTournament.Rounds.Count + 1).ToString();
 

@@ -13,12 +13,12 @@ namespace ServiceAccessLayer
 {
     public class SaveData
     {
-        private IService TS;
+       // private IService TS;
         private TournamentService.Tournament dummyTournament;
 
         public SaveData()
         {
-            TS = new ServiceClient();
+            //TS = new ServiceClient();
         }
 
         public void SaveTournament(DomainLayer.Tournament newTournament)
